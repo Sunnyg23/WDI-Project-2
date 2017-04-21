@@ -1,2 +1,1 @@
-# WDI-Project-2
-Your World Message
+# wdi-project-2
