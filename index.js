@@ -7,6 +7,9 @@ mongoose.Promise      = require('bluebird');
 const env             = require('./config/env');
 const router          = require('./config/routes');
 const app             = express();
+const User            = require('./models/user');
+const session         = require('express-session');
+const flash           = require('express-flash');
 
 mongoose.connect(env.db);
 
@@ -23,6 +26,39 @@ app.use(methodOverride((req) => {
     return method;
   }
 }));
+
+app.use(session({
+  secret: process.env.SESSIOM_SECRET || 'ssh it\'s a secret',
+  resave: false,
+  saveUninitalized: false
+}));
+
+app.use(flash());
+
+app.use((req,res, next) => {
+  console.log(req.session.userId);
+  if (!req.session.userId) return next();
+
+
+User
+  .findById(req.session.userId)
+  .exec()
+  .then((user) => {
+    if(!user) {
+      return req.session.regenerate(() => {
+        req.flash('danger', 'You must be logged in.');
+        res.redirect('/');
+      });
+    }
+
+    req.session.userId = user._id;
+
+    res.locals.user = user;
+    res.locals.isLoggedIn = true;
+
+    next();
+  });
+});
 
 app.use(router);
 
