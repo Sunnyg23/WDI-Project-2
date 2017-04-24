@@ -1,0 +1,9 @@
+<h1>Index</h1>
+<ul>
+  <% posts.forEach(post => { %>
+  <li>
+    <a href="/posts/< post.id %>"><h3<%= post.name %></h3><a>
+    <p><%= post.description %></p>
+  </li>
+  <% }); %>
+</ul>

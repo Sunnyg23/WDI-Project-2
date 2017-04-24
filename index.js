@@ -3,6 +3,7 @@ const expressLayouts  = require('express-ejs-layouts');
 const bodyParser      = require('body-parser');
 const mongoose        = require('mongoose');
 const methodOverride  = require('method-override');
+mongoose.Promise      = require('bluebird');
 const env             = require('./config/env');
 const router          = require('./config/routes');
 const app             = express();

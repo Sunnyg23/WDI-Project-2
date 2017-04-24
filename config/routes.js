@@ -1,18 +1,20 @@
 const express = require('express');
 const router  = express.Router();
 
-router.get('/', (req, res) => res.render('statics/home'));
-router.get('/statics/login', (req, res) => res.render('statics/login'));
-router.get('/', (req, res) => res.render('statics/register'));
-router.get('/', (req, res) => res.render('statics/profile'));
-router.get('/', (req, res) => res.render('statics/add'));
-router.get('/', (req, res) => res.render('statics/edit'));
-router.get('/', (req, res) => res.render('statics/update'));
-router.get('/', (req, res) => res.render('statics/delete'));
-router.get('/', (req, res) => res.render('statics/followers'));
-router.get('/', (req, res) => res.render('statics/following'));
-router.get('/', (req, res) => res.render('statics/account'));
+const postsController = require('../controllers/posts');
 
+router.get('/', (req, res) => res.render('home'));
 
+router.route('/posts')
+  .get(postsController.index)
+  .post(postsController.create);
+router.route('/posts/new')
+  .get(postsController.new);
+router.route('/posts/:id')
+  .get(postsController.show)
+  .put(postsController.update)
+  .delete(postsController.delete);
+router.route('/posts/:id/edit')
+  .get(postsController.edit);
 
 module.exports = router;
