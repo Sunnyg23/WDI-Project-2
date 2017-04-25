@@ -1,0 +1,16 @@
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <% if (locals.isLoggedIn) { %>
+      <li><a href="/posts">Posts</a></li>
+      <li><a href="/posts/new">New Post</a></li>
+      <li><a href=""></a>Following</li>
+      <li><a href=""></a>Followers</li>
+      <li><a href="/profile"><%= locals.currentUser.username %></a></li>
+      <li><a href="/logout">Logout</a></li>
+    <% } else { %>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/register">Register</a></li>
+    <% } %>
+  </ul>
+</nav>

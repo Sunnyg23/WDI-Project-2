@@ -2,8 +2,9 @@
 
 <h3><%= post.name %></h3>
 <p><%= post.description %></p>
-<a class="btn btn-primary" href="posts/<% post.id %>/edit">Edit</a>
-<form action="/posts/<%= post.id %>" method="post">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/<%= post.youtubeId %>" frameborder="0" allowfullscreen></iframe>
+<a class="btn btn-primary" href="/posts/<%= post._id %>/edit">Edit</a>
+<form action="/posts/<%= post._id %>" method="post">
   <input type="hidden" name="_method" value="delete">
   <button class="btn btn-danger">Delete</button>
 </form>

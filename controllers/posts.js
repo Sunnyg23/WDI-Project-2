@@ -3,6 +3,7 @@ const Post = require('../models/post');
 function postsIndex(req, res) {
   Post
   .find()
+  .populate('user')
   .exec()
   .then(posts => {
     res.render('posts/index', { posts });
@@ -30,10 +31,15 @@ function postsShow(req, res) {
 }
 
 function postsCreate(req, res) {
-  Post
-  .create(req.body)
+  const post = new Post(req.body);
+  post.user = res.locals.currentUser._id;
+
+  post.save()
   .then(() => {
     res.redirect('/posts');
+  })
+  .catch(err => {
+    res.status(500).render('error', { error: err });
   });
 }
 
@@ -58,8 +64,9 @@ function postsUpdate(req, res) {
     if (!post) return res.status(404).render('error', { error: 'No post found.'});
 
     for(const field in req.body) {
-      post[field] = req.body[post];
+      post[field] = req.body[field];
     }
+
     return post.save();
   })
   .then(post => {

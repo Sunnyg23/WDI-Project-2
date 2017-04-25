@@ -36,27 +36,25 @@ app.use(session({
 app.use(flash());
 
 app.use((req,res, next) => {
-  console.log(req.session.userId);
   if (!req.session.userId) return next();
 
-
-User
+  User
   .findById(req.session.userId)
   .exec()
   .then((user) => {
     if(!user) {
       return req.session.regenerate(() => {
         req.flash('danger', 'You must be logged in.');
-        res.redirect('/');
+        res.redirect('/login');
       });
     }
 
     req.session.userId = user._id;
 
-    res.locals.user = user;
+    res.locals.currentUser = user;
     res.locals.isLoggedIn = true;
 
-    next();
+    return next();
   });
 });
 

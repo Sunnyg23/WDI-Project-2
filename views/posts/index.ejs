@@ -2,8 +2,10 @@
 <ul>
   <% posts.forEach(post => { %>
   <li>
-    <a href="/posts/< post.id %>"><h3<%= post.name %></h3><a>
+    <a href="/posts/<%= post._id %>"><h3><%= post.name %></h3><a>
+    <p>Added by <a href="/users/<%= post.user._id %>"><%= post.user.username %></a></p>
     <p><%= post.description %></p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= post.youtubeId %>" frameborder="0" allowfullscreen></iframe>
   </li>
   <% }); %>
 </ul>

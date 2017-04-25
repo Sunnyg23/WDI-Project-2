@@ -26,13 +26,15 @@ User
 
   return Post
   .create([{
-    name: 'blah',
-    video: 'blah',
-    description: 'blah'
+    name: 'blah1',
+    youtubeId: 'uvfxxehL6j8',
+    description: 'blah',
+    user: users[0]._id
   }, {
-    name: 'blah',
-    video: 'blah',
-    description: 'blah'
+    name: 'blah2',
+    youtubeId: 'liMNNZuWZwY',
+    description: 'blah',
+    user: users[1]._id
   }]);
 })
   .then((posts) => {

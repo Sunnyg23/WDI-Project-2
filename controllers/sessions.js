@@ -11,7 +11,9 @@ function sessionsCreate(req, res) {
     if(!user || !user.validatePassword(req.body.password)) {
       return res.status(401).render('sessions/new', { message: 'Unrecongised credentials' });
     }
-    return res.redirect('/');
+
+    req.session.userId = user.id;
+    return res.redirect('/profile');
   });
 }
 

@@ -4,6 +4,7 @@ const router  = express.Router();
 const postsController = require('../controllers/posts');
 const sessions = require('../controllers/sessions');
 const registrations = require('../controllers/registrations');
+const users = require('../controllers/users');
 
 
 router.get('/', (req, res) => res.render('home'));
@@ -30,5 +31,12 @@ router.route('/login')
 
 router.route('/logout')
   .get(sessions.delete);
+
+router.route('/profile')
+  .get(users.profile);
+
+router.route('/users/:id')
+  .get(users.show);
+
 
 module.exports = router;
