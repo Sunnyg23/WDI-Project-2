@@ -2,7 +2,7 @@ const Post = require('../models/post');
 
 function postsIndex(req, res) {
   Post
-  .find()
+  .find({ user: { $ne: res.locals.currentUser._id }})
   .populate('user')
   .exec()
   .then(posts => {

@@ -32,9 +32,6 @@ router.route('/login')
 router.route('/logout')
   .get(sessions.delete);
 
-router.route('/profile')
-  .get(users.profile);
-
 router.route('/users/:id')
   .get(users.show);
 

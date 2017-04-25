@@ -28,9 +28,9 @@ app.use(methodOverride((req) => {
 }));
 
 app.use(session({
-  secret: process.env.SESSIOM_SECRET || 'ssh it\'s a secret',
+  secret: process.env.SESSION_SECRET || 'ssh it\'s a secret',
   resave: false,
-  saveUninitalized: false
+  saveUninitialized: false
 }));
 
 app.use(flash());
