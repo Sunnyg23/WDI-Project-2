@@ -50,6 +50,14 @@ li div {
     font-size: 14px;
   }
 
+  img{
+    border-radius: 200px;
+    border-style: solid;
+    border-radius: 100px;
+    border-radius: 25px;
+    height: 80px;
+  }
+
   ul {
     padding-top: 15px;
     clear: both;
@@ -60,4 +68,14 @@ li div {
       float: left;
     }
   }
+}
+
+
+
+
+img {
+  border-style: solid;
+  border-radius: 100px;
+  border-radius: 25px;
+  height: 80px;
 }
