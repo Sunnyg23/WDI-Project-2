@@ -2,9 +2,13 @@ const mongoose = require('mongoose');
 const bcrypt   = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
-  username: { type: String },
+  username: { type: String, required: true },
+  profilepic: {type: String, required: true, trim: true, default: 'http://lh4.ggpht.com/VpeucXbRtK2pmVY6At76vU45Q7YWXB6kz25Sm_JKW1tgfmJDP3gSAlDwowjGEORSM-EW=w300'},
   email: { type: String, required: true },
-  password: {type: String, required: true }
+  password: {type: String, required: true },
+  favourites: [{}],
+  followers: [{}],
+  following: [{}]
 });
 
 userSchema.pre('save', function hashPassword(next) {

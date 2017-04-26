@@ -1,11 +1,14 @@
-<h1><%= user.username %>'s Profile</h1>
 
-<ul>
-  <% user.posts.forEach(post => { %>
-  <li>
-    <a href="/posts/<%= post._id %>"><h3><%= post.name %></h3><a>
-    <p><%= post.description %></p>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= post.youtubeId %>" frameborder="0" allowfullscreen></iframe>
-  </li>
-  <% }); %>
-</ul>
+<div class="jumbotron">
+  <h1><%= user.username %>'s Profile</h1>
+  <img src="<%= user.profilepic %> " alt="it didn't work">
+  <ul>
+    <% user.posts.forEach(post => { %>
+    <li>
+      <a href="/posts/<%= post._id %>"><h3><%= post.name %></h3><a>
+      <p><%= post.description %></p>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= post.youtubeId %>" frameborder="0" allowfullscreen></iframe>
+    </li>
+    <% }); %>
+  </ul>
+</div>
