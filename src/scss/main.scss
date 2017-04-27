@@ -4,6 +4,7 @@
 
 body {
   font-family: sans-serif;
+   background: linear-gradient ( rgba(0,0,0,0.4), rgba(0,0,0,0.4) );
 }
 
 h1,h2,h3,h4,h5,h6,p {
@@ -70,12 +71,74 @@ li div {
   }
 }
 
+.isk{
+  text-align: center;
+  margin: auto;
+}
+.jumbotron {
+text-align: center;
+}
 
-
+.modal-content{
+  img {
+    width: 80px;
+    height: 80px;
+  }
+}
 
 img {
-  border-style: solid;
-  border-radius: 100px;
-  border-radius: 25px;
+  width: 80px;
   height: 80px;
+}
+
+// iframe {
+//  position: absolute;
+//  right: 0;
+//  bottom: 0;
+//  min-width: 100%;
+//  min-height: 100%;
+//  width: auto;
+//  height: auto;
+//  z-index: -100;
+//  background-size: cover;
+//  overflow: hidden;
+//  }
+.hass{
+  background-color: white;
+  width: 600px;
+  text-align: center;
+  margin: auto;
+  border-radius: 20px;
+}
+.san{
+  color: #9b9b9b;
+}
+
+.Homecont {
+  
+}
+
+ video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+ background: url('https://cdn.dribbble.com/users/1664201/screenshots/3395326/divvy.gif') no-repeat;
+
+  background-size: cover;
+  transition: 1s opacity;
+}
+.stopfade {
+   opacity: .5;
+}
+
+#logo{
+  height: 50px;
+  width: 50px;
+  margin: -15px auto;
 }

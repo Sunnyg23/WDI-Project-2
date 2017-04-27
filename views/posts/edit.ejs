@@ -1,23 +1,34 @@
-<div class="jumbotron">
-  <h1>Edit</h1>
-  <form action="/posts/<%= post._id %>" method="post">
-    <input type="hidden" name="_method" value="PUT">
-
+<div class = "jumbotron">
+<form class="form-horizontal" method="POST" action="/posts/<%= post._id %>">
+  <input type="hidden" name="_method" value="PUT">
+  <fieldset>
+    <legend>Edit</legend>
     <div class="form-group">
-      <label for="name">Name</label>
-      <input class="form-control" type="text" name="name" value="<%= post.name %>">
+      <label for="name" class="col-lg-3 control-label">Name</label>
+      <div class="col-lg-5">
+        <input type="text" class="form-control" name="name" value="<%= post.name %>" id="inputName" placeholder="">
+      </div>
+    </div>
+    <form action="/videos" method="post">
+    <div class="form-group">
+      <label for="youtubeId" class="col-lg-3 control-label">Youtube Emeded Code</label>
+      <div class="col-lg-5">
+        <input type="text" class="form-control" name="youtubeId" value="<%= post.youtubeId %>" id="inputYoutubeId" placeholder="">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description" class="col-lg-3 control-label">Description</label>
+      <div class="col-lg-5">
+       <textarea class="form-control" name="description" id="inputDescription" placeholder="" cols="80" <%= post.description %>></textarea>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="youtubeId">Youtube Embed Code</label>
-      <input class="form-control" type="text" name="youtubeId" value="<%= post.youtubeId %>">
-    </div>
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-5">
 
-    <div class="form-group">
-      <label for="description">Description</label>
-      <textarea class="form-control" name="description" rows="8" cols="80"><%= post.description %></textarea>
+            <button class="btn btn-success">"Update Post!"</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
     </div>
-
-    <input class="btn btn-success" type="submit" value="Update post!">
-  </form>
-</div>

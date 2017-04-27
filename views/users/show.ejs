@@ -1,14 +1,81 @@
-
 <div class="jumbotron">
+  <div class="container isk">
   <h1><%= user.username %>'s Profile</h1>
-  <img src = <%= user.profilepic %> " alt="it didn't work">
+
+  <% if (locals.currentUser.id !== user.id) { %>
+    <form action="/users/<%= user._id %>/follow" method="post">
+      <input class="btn btn-success" type="submit" name="" value="Follow">
+    </form>
+  <% } %>
+
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".followers">Followers <%= user.followers.length %></button>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".following">Following <%= user.following.length %></button>
+
+
+  <img src=<%= user.profilepic %> " alt="it didn't work">
+  <div class="hass">
+  <h3 class="san"><%= user.username %>'s Posts</h3>
   <ul>
+
     <% user.posts.forEach(post => { %>
-    <li>
+      <li>
       <a href="/posts/<%= post._id %>"><h3><%= post.name %></h3><a>
       <p><%= post.description %></p>
       <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= post.youtubeId %>" frameborder="0" allowfullscreen></iframe>
-    </li>
-    <% }); %>
-  </ul>
-</div>
+      </li>
+      <% }); %>
+
+    </ul>
+
+    <h3><%= user.username %>'s Favourites</h3>
+    <ul>
+      <% user.favourites.forEach(post => { %>
+        <li>
+        <a href="/posts/<%= post._id %>"><h3><%= post.name %></h3><a>
+        <p><%= post.description %></p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= post.youtubeId %>" frameborder="0" allowfullscreen></iframe>
+        <form method="post" action="/favourites/<%= post._id %>/delete">
+        <input type="hidden" name="_method" value="delete">
+        <input class="btn btn-danger" type="submit" value="Remove from Favourites">
+        </form>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
+    </div>
+
+    <div class="modal fade followers" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <h2>Followers</h2>
+          <ul>
+            <% user.followers.forEach(user => { %>
+              <a href="/users/<%= user._id %>"><li>
+              <img src="<%= user.profilepic %>" width="100">
+              <h4><%= user.username %></h4>
+              </li></a>
+              <% }); %>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade following" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content">
+            <h2>Following</h2>
+            <ul>
+              <% user.following.forEach(user => { %>
+                <li>
+                <img src="<%= user.profilepic %>" width="100">
+                <h4><%= user.username %></h4>
+                <form method="post" action="/users/<%= user._id %>/unfollow">
+                <input type="submit" value="Unfollow">
+                </form>
+                </li>
+                <% }); %>
+              </ul>
+            </div>
+          </div>
+         </div>
+        </div>

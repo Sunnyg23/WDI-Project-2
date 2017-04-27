@@ -1,6 +1,6 @@
 <div class = "jumbotron">
 <div class="container">
-  <h1>Videos</h1>
+  <h1>Divvy's</h1>
 
   <ul class="row">
     <% posts.forEach(post => { %>
@@ -12,14 +12,16 @@
             <a href="/posts/<%= post._id %>"><h3><%= post.name %></h3><a>
             <p>Added by <a href="/users/<%= post.user._id %>"><%= post.user.username %></a></p>
             <ul>
-              <li>View</li>
-              <li>Favourite</li>
-              <li>Follow</li>
+              <% if (locals.currentUser.favourites.indexOf(post.id) === -1 ) { %>
+                <li><button data-post-id="<%= post._id %>" class="btn btn-success favourite">Favourite</button></li>
+              <% } else { %>
+                <li>Favourited</li>
+              <% }; %>
             </ul>
           </div>
         </div>
       </li>
     <% }); %>
-    </ul>
+  </ul>
 </div>
 </div>

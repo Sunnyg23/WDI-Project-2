@@ -19,15 +19,15 @@ function postsNew(req, res) {
 
 function postsShow(req, res) {
   Post
-    .findById(req.params.id)
-    .exec()
-    .then(post => {
-      if(!post) return res.status(404).render('error', { error: 'No Post found.'});
-      res.render('posts/show', { post });
-    })
-    .catch(err => {
-      res.status(500).render('error', { error: err });
-    });
+  .findById(req.params.id)
+  .exec()
+  .then(post => {
+    if(!post) return res.status(404).render('error', { error: 'No Post found.'});
+    res.render('posts/show', { post });
+  })
+  .catch(err => {
+    res.status(500).render('error', { error: err });
+  });
 }
 
 function postsCreate(req, res) {
@@ -82,15 +82,13 @@ function postsDelete(req, res) {
     if (!post) return res.status(404).render('error', { error: 'No post found.'});
     return post.remove();
   })
-.then(() => {
-  res.redirect('/posts');
-})
-.catch(err => {
-  res.status(500).render('error', { error: err });
-});
+  .then(() => {
+    res.redirect('/posts');
+  })
+  .catch(err => {
+    res.status(500).render('error', { error: err });
+  });
 }
-
-
 
 module.exports = {
   index: postsIndex,
